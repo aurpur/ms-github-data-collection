@@ -1,1 +1,1 @@
-# ms-github-data-collection
+# microservice github data collection
