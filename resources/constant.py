@@ -1,0 +1,1 @@
+CONFIG_FILE = 'resources/config.properties'

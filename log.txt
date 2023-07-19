@@ -1,5 +1,0 @@
-2023-07-19 16:36:49,423 - collector.core - INFO - Searching for keras.layers.convolutional in Github files with language python
-2023-07-19 16:36:49,425 - api.rest - ERROR - Error while getting page 1 from github api
-2023-07-19 16:36:49,425 - api.rest - ERROR - No connection adapters were found for "'https://api.github.com'/search/code?q=keras.layers.convolutional+language:python+in:file"
-2023-07-19 16:36:49,425 - collector.core - INFO - Found 0 repositories for query keras.layers.convolutional
-2023-07-19 16:36:49,426 - collector.core - INFO - Resulst: []

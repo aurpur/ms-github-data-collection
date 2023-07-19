@@ -12,6 +12,7 @@ import requests
 import http.client
 from api import config
 import helpers.log as myLog
+import helpers.utils as utils
 
 #---------------------------------------------------------------------------
 #   Logging
@@ -23,23 +24,39 @@ import helpers.log as myLog
 
 logger = myLog.logger(__name__)
 
+#---------------------------------------------------------------------------
+#   Get all pages
+#---------------------------------------------------------------------------
+#
+# Function enabling to get all pages from github api
+#
+
 def get_all_pages(url):
-    """Get all pages from github api"""
+
+   # Get all pages from github api
     page = config.get('github', 'INIT_PAGE')
     results = []
 
+    # Set the HTTP headers
+    headers = {
+            "Authorization": f"Bearer {config.get('github', 'TOKEN')}",
+            "Accept": "application/vnd.github+json"
+        }
+    
     while True:
         if page > config.get('github', 'MAX_PAGE'):
             break
         try:
-            r = requests.get(url, params={'page': page, 'per_page': config.get('github', 'NBR_PAGE_PER_REQUEST')})
-
+            r = requests.get(url=url, headers=headers, params={'page': page, 'per_page': config.get('github', 'NBR_PAGE_PER_REQUEST')})
 
             if r.status_code == http.client.OK:
                 results.append(r.json())
                 page += config.get('default', 'INCREMENT')
             else:
                 break
+
+            utils.delay_between_requests()
+
         except Exception as e:
             logger.error('Error while getting page {} from github api'.format(page))
             logger.error(e)

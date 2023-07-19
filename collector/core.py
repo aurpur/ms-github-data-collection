@@ -39,7 +39,7 @@ def search_in_code(query, language='python'):
     try:
         api_url = config.get('github', 'API_URL')
 
-        url = '{}/search/code?q={}+language:{}+in:file'.format(api_url, query, language)
+        url = '{}/search/code?q={}+language:{}'.format(api_url, query, language)
 
         raw_results = get_all_pages(url)
 

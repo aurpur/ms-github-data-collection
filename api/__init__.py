@@ -3,7 +3,8 @@
 #
 
 import configparser
+import resources.constant as constant
 
 
 config = configparser.ConfigParser()
-config.read('resources/config.properties')
+config.read(constant.CONFIG_FILE)
