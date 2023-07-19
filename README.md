@@ -8,6 +8,7 @@ Gestion des properties : https://www.digitalocean.com/community/tutorials/python
 
 TODO :
 
+TOKEN dans variable d'environnement
 Connexion with db
 Clean data (raw to clean)
 Save in db (1 line = item)
