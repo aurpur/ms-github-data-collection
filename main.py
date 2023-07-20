@@ -1,4 +1,5 @@
-import collector.core as collect 
+import collector.core as collect
+from helpers.loader import Loader 
 
 
 print("---------------------------------------------------------------- ")
@@ -10,8 +11,9 @@ print("   using keywords. ")
 print("---------------------------------------------------------------- ")
 print("---------------------------------------------------------------- ")
 print("\n")
-
-print(" Collecting Github repositories ...")
-result = collect.search_in_code('keras.layers.convolutional')
-
+    
+if __name__ == "__main__":
+    loader = Loader("Collecting Github repositories...", "\nFinish!", 0.05).start()
+    result = collect.search_in_code('keras.layers.convolutional')
+    loader.stop()
 print("---------------------------------------------------------------- ")

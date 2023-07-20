@@ -11,6 +11,7 @@
 import helpers.log as myLog
 from collector import config
 from api.rest import get_all_pages
+import db.dao as db
 
 #---------------------------------------------------------------------------
 #   Logging
@@ -33,7 +34,6 @@ logger = myLog.logger(__name__)
 
 def search_in_code(query, language='python'):
     """Search query in github files with language in parameter"""
-    logger.info('Searching for {} in Github files with language {}'.format(query, language))
     clean_results = []
     
     try:
@@ -45,16 +45,15 @@ def search_in_code(query, language='python'):
 
         clean_results = extract_repo_data(raw_results)
 
-
-        logger.info('Found {} repositories for query {}'.format(len(clean_results), query))
-        logger.info('Resulst: {}'.format(clean_results))
-
+        logger.info('\n\nFound \033[1m{}\033[0m repositories \nQuery q=\033[1m{}\033[0m+language:\033[1m{}\033[0m\n'.format(len(clean_results), query, language))
+   
     except Exception as e:
         logger.error('Error while searching for {} in Github files with language {}'.format(query, language))
         logger.error(e)
         
+    db.save(clean_results)
     return clean_results
-    # db.save(clean_results)
+    
 
 
 #---------------------------------------------------------------------------
@@ -67,4 +66,10 @@ def search_in_code(query, language='python'):
 
 # TODO:Implement this function
 def extract_repo_data(raw_results):
-    return raw_results
+    result = []
+
+    for dictOject in raw_results:
+        for item in dictOject['items']:
+            result.append(item)
+
+    return result
