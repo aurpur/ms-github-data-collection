@@ -163,4 +163,5 @@ cython_debug/
 # Log files
 *.log
 
-
+# Visual Studio Code
+.vscode/settings.json
