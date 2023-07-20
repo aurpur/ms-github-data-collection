@@ -14,6 +14,8 @@ print("\n")
     
 if __name__ == "__main__":
     loader = Loader("Collecting Github repositories...", "\nFinish!", 0.05).start()
-    result = collect.search_in_code('keras.layers.convolutional')
+
+    query = collect.generate_query('keras', 'convolutional', 'layers')
+    result = collect.search_in_code(query)
     loader.stop()
 print("---------------------------------------------------------------- ")

@@ -64,7 +64,6 @@ def search_in_code(query, language='python'):
 # returned by the github API.
 #
 
-# TODO:Implement this function
 def extract_repo_data(raw_results):
     result = []
 
@@ -73,3 +72,14 @@ def extract_repo_data(raw_results):
             result.append(item)
 
     return result
+
+#---------------------------------------------------------------------------
+#   Generate query
+#---------------------------------------------------------------------------
+#
+# Function enabling to generate a query for the Github API.
+#
+
+# TODO:Implement this function
+def generate_query(*keywords):
+    return 'keras.layers.convolutional'

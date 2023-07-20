@@ -8,10 +8,8 @@ Gestion des properties : https://www.digitalocean.com/community/tutorials/python
 
 TODO :
 
-TOKEN dans variable d'environnement
-Connexion with db
-Clean data (raw to clean)
-Save in db (1 line = item)
+Generer automatiquement la Query
+BD en ligne
 Github action
    Exécution chaque heure ?
 Token
@@ -26,3 +24,21 @@ Get repository meta data (starts number, commit number, last commit date, contri
 
 
 Web app to count numbre of registery in db
+
+
+
+Add variable d'environnement sur mac
+
+nano $HOME/.zshrc
+** export YOUR_VARIABLE=your_value
+source $HOME/.zshrc
+
+
+** Terminal 
+>>echo $DB_PASSWORD
+echo $GITHUB_TOKEN
+
+
+** In source code (constant.py)
+>> TOKEN = os.getenv('GITHUB_TOKEN')
+print(TOKEN)

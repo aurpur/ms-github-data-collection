@@ -13,6 +13,7 @@ import http.client
 from api import config
 import helpers.log as myLog
 import helpers.utils as utils
+import resources.constant as constant
 
 #---------------------------------------------------------------------------
 #   Logging
@@ -39,7 +40,7 @@ def get_all_pages(url):
 
     # Set the HTTP headers
     headers = {
-            "Authorization": f"Bearer {config.get('github', 'TOKEN')}",
+            "Authorization": f"Bearer {constant.TOKEN}",
             "Accept": "application/vnd.github+json"
         }
     
