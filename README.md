@@ -12,9 +12,6 @@ Generer automatiquement la Query
 BD en ligne
 Github action
    Exécution chaque heure ?
-Token
-    Possibilié de générer via API ?
-    Multi Token ?
 
 DB to CSV
 

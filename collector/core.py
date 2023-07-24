@@ -12,6 +12,7 @@ import helpers.log as myLog
 from collector import config
 from api.rest import get_all_pages
 import db.dao as db
+import random
 
 #---------------------------------------------------------------------------
 #   Logging
@@ -80,6 +81,18 @@ def extract_repo_data(raw_results):
 # Function enabling to generate a query for the Github API.
 #
 
-# TODO:Implement this function
-def generate_query(*keywords):
-    return 'keras.layers.convolutional'
+def generate_query(isAll=False):
+
+    queries = ['keras.layers',
+    'keras.layers.convolutional',
+    'AveragePooling2D',
+    'MaxPooling2D',
+    'tensorflow.keras.layers',
+    'Conv2D',
+    'Convolution2D',
+    'BatchNormalization']
+
+    if(isAll):
+        return queries
+    
+    return random.choice(queries)

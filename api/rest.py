@@ -35,7 +35,7 @@ logger = myLog.logger(__name__)
 def get_all_pages(url):
 
    # Get all pages from github api
-    page = config.get('github', 'INIT_PAGE')
+    page = int(config.get('github', 'INIT_PAGE'))
     results = []
 
     # Set the HTTP headers
@@ -45,17 +45,19 @@ def get_all_pages(url):
         }
     
     while True:
-        if page > config.get('github', 'MAX_PAGE'):
+        if page > int(config.get('github', 'MAX_PAGE')):
             break
         try:
-            r = requests.get(url=url, headers=headers, params={'page': page, 'per_page': config.get('github', 'NBR_PAGE_PER_REQUEST')})
+            r = requests.get(url=url, headers=headers, params={'page': page, 'per_page': int(config.get('github', 'NBR_PAGE_PER_REQUEST'))})
 
+            logger.info('Getting page {} from github api'.format(page)) 
+            
             if r.status_code == http.client.OK:
                 results.append(r.json())
-                page += config.get('default', 'INCREMENT')
             else:
                 break
 
+            page += 1
             utils.delay_between_requests()
 
         except Exception as e:
