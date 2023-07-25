@@ -90,7 +90,13 @@ def generate_query(isAll=False):
     'tensorflow.keras.layers',
     'Conv2D',
     'Convolution2D',
-    'BatchNormalization']
+    'BatchNormalization', 
+    'import torch', 
+    'import torchvision.models',
+    'torch.nn.Sequential', 
+    'torch.nn.Conv2d', 
+    'torch.nn.BatchNorm2d',
+    'torch.nn.MaxPool2d']
 
     if(isAll):
         return queries
