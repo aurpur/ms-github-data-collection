@@ -10,6 +10,7 @@ logger = myLog.logger(__name__)
 def save(results):
 
     if len(results) == 0:
+        logger.info('No data to save')
         return
 
     # Connexion à une base de données PostgreSQL
@@ -23,12 +24,12 @@ def save(results):
         cursor_obj = con.cursor()
 
         # Création de la table
-        cursor_obj.execute("CREATE TABLE IF NOT EXISTS github_repositories (id SERIAL PRIMARY KEY, name VARCHAR(255), github_id VARCHAR(255), url VARCHAR(255), detected_file VARCHAR(255), raw_data TEXT)")    
+        cursor_obj.execute("CREATE TABLE IF NOT EXISTS filtered_data (id SERIAL PRIMARY KEY, name VARCHAR(255), github_id VARCHAR(255), url VARCHAR(255), detected_file VARCHAR(255), raw_data TEXT)")    
         con.commit()
 
         for result in results:
             # Insertion des données
-            cursor_obj.execute("INSERT INTO github_repositories (name, github_id, url, detected_file, raw_data) VALUES (%s, %s, %s, %s, %s)", (result['repository']['name'], result['repository']['id'], result['repository']['html_url'], result['path'], json.dumps(result) ))  
+            cursor_obj.execute("INSERT INTO filtered_data (name, github_id, url, detected_file, raw_data) VALUES (%s, %s, %s, %s, %s)", (result['repository']['name'], result['repository']['id'], result['repository']['html_url'], result['path'], json.dumps(result) ))  
             con.commit()
 
     # Fermeture de la connexion

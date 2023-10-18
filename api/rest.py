@@ -9,6 +9,7 @@
 #
 
 import requests
+
 import http.client
 from api import config
 import helpers.log as myLog
@@ -67,3 +68,21 @@ def get_all_pages(url):
     return results
 
         
+def _get(url, withToken=False):
+     # Set the HTTP headers
+    headers = {
+            "Accept": "application/vnd.github+json"
+        }
+    
+    if(withToken):
+        headers.add('Authorization', f"Bearer {constant.TOKEN}")
+    
+    try:
+        r = requests.get(url=url, headers=headers)
+        
+        if r.status_code == http.client.OK:
+            return r.json()
+       
+    except Exception as e:
+        logger.error('Error while getting commit from github api {}'.format(url))
+        logger.error(e)

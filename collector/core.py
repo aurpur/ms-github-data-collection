@@ -12,6 +12,7 @@ import helpers.log as myLog
 from collector import config
 from api.rest import get_all_pages
 import db.dao as db
+import helpers.filter as filter
 import random
 
 #---------------------------------------------------------------------------
@@ -52,8 +53,18 @@ def search_in_code(query, language='python'):
         logger.error('Error while searching for {} in Github files with language {}'.format(query, language))
         logger.error(e)
         
-    db.save(clean_results)
-    return clean_results
+
+    # Filtering data 
+
+    filtered_results = filter.filter_repositories(clean_results)
+    logger.info("\n\n===> Found {} repositories after filtering".format(len(filtered_results)))
+
+    if len(filtered_results) == 0:
+        return []
+    
+   
+    db.save(filtered_results)
+    return filtered_results
     
 
 
